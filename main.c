@@ -15,6 +15,11 @@
 int	main(void)
 {
 	char	*input;
+	t_mini shell;
+	
+	//testing with input values
+	shell.cmd = "echo";
+	shell.str = "hello";
 
 	while (1)
 	{
@@ -31,6 +36,7 @@ int	main(void)
 			break ;
 		}
 		//t_mini shell = parsing(input);
+		execution(shell, NULL);
 		//execution(shell);
 		//printf("You entered: %s\n", input);
 		free(input);
