@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/24 23:57:22 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/25 00:27:52 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	execution(t_mini shell, char **env)
         ft_pwd();
     else if (ft_strcmp(shell.cmd, "export") == 0)
         ft_export(env);
-        
-    /*
     else if (ft_strcmp(shell.cmd, "unset") == 0)
-        ft_unset(str);
+        ft_unset(shell.str, env);
+    /*
     else if ft_strcmp(shell.cmd, "env") == 0)
         ft_env();
     else if ft_strcmp(shell.cmd, "exit) == 0)

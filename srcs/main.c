@@ -43,6 +43,9 @@ int	main(int argc, char **argv, char **envp)
 		}
 		//t_mini shell = parsing(input);
 		execution(shell, envp);
+		shell.cmd = "unset";
+		shell.str = "HOME";
+		execution(shell, envp);
 		free(input);
 	}
 	return (0);
