@@ -16,14 +16,17 @@ int	main(void)
 {
 	char	*input;
 	t_mini shell;
-	
+	const char *prompt;
+
+	prompt = "\033[1;38;5;201mMinishell🐚 \033[0m";
+
 	//testing with input values
 	shell.cmd = "echo";
 	shell.str = "hello";
 
 	while (1)
 	{
-		input = readline("my_shell> ");
+		input = readline(prompt);
 		if (input == NULL) 
 		{
 			printf("\n");
@@ -37,8 +40,6 @@ int	main(void)
 		}
 		//t_mini shell = parsing(input);
 		execution(shell, NULL);
-		//execution(shell);
-		//printf("You entered: %s\n", input);
 		free(input);
 	}
 	return (0);

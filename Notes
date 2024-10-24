@@ -1,2 +1,5 @@
 
+Janae
+
 - If we have echo + multiple args, how do we put this into the struct - should there be an array of strings?
+- still need to figure out echo -n 
