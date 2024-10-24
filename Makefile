@@ -6,7 +6,7 @@
 #    By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:15:11 by fvargas           #+#    #+#              #
-#    Updated: 2024/10/24 20:52:50 by janaebyrne       ###   ########.fr        #
+#    Updated: 2024/10/24 20:58:23 by janaebyrne       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ EXECUTION_DIR = $(SRC_DIR)/execution
 PARSING_DIR = $(SRC_DIR)/parsing
 UTILS_DIR = $(SRC_DIR)/utils
 
-SRC = $(SRC_DIR)/main.c $(UTILS_DIR)/util.c $(UTILS_DIR)/ft_split.c $(EXECUTION_DIR)/ft_echo.c $(EXECUTION_DIR)/execution.c $(PARSING_DIR)/parsing.c
+SRC = $(SRC_DIR)/main.c $(UTILS_DIR)/util.c $(UTILS_DIR)/ft_split.c $(EXECUTION_DIR)/builtins.c $(EXECUTION_DIR)/execution.c $(PARSING_DIR)/parsing.c
 # parsing.c 
 
 INC = inc/minishell.h

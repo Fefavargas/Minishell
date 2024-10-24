@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/23 18:09:06 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/24 23:32:30 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ char	*ft_strjoin(char const *s1, char const *s2);
 //ft_split.c
 char	**ft_split(char const *s, char c);
 
-//ft_echo.c
+//builtins.c
 void ft_echo(char *cmd, char *str);
-
+void ft_cd(char *path);
+void ft_pwd(void);
 
 #endif

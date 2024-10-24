@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:22:22 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/23 18:10:13 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/24 23:32:20 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,28 @@ void ft_echo(char *cmd, char *str)
         printf("\n"); // Add newline if not suppressed
     }
 }
+
+
+void ft_cd(char *path)
+ {
+    if (path == NULL || strlen(path) == 0) {
+        // If no path is provided, change to home directory
+        path = getenv("HOME");
+    }
+    if (chdir(path) != 0) {
+        perror("cd");
+    }
+}
+
+
+void ft_pwd(void)
+{
+    char cwd[1024];  // Buffer to hold the current working directory
+
+    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+        printf("%s\n", cwd);
+    } else {
+        perror("pwd");
+    }
+}
+

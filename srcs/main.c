@@ -19,11 +19,9 @@ int	main(void)
 	const char *prompt;
 
 	prompt = "\033[1;38;5;201mMinishell🐚 \033[0m";
-
-	//testing with input values
-	shell.cmd = "echo";
-	shell.str = "hello";
-
+	//for testing
+	shell.cmd = "cd";
+	shell.str = "srcs";
 	while (1)
 	{
 		input = readline(prompt);
