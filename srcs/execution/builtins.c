@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:22:22 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/24 23:32:20 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/24 23:49:41 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 void ft_echo(char *cmd, char *str)
  {
-    int i = 1;
-    int new_line = 1; 
-
-    // Check for -n option
-    if (cmd[i] && ft_strcmp(&cmd[i], "-n") == 0) {
+    int i;
+    int new_line;
+    int check_n;
+        
+    i = 1;
+    new_line = 1;
+    check_n = ft_strcmp(&cmd[i], "-n");
+    if (cmd[i] && check_n == 0)
+    {
         new_line = 0;
-        i++; // Skip over the -n
+        i++; 
     }
     printf("%s", str);
     if (new_line) 
@@ -31,25 +35,28 @@ void ft_echo(char *cmd, char *str)
 
 
 void ft_cd(char *path)
- {
-    if (path == NULL || strlen(path) == 0) {
-        // If no path is provided, change to home directory
+{
+    int len;
+    len = strlen(path);
+    int dest;
+    
+    if (path == NULL || len == 0) 
         path = getenv("HOME");
-    }
-    if (chdir(path) != 0) {
+    dest = chdir(path);
+    if (dest != 0) 
         perror("cd");
-    }
 }
 
 
 void ft_pwd(void)
 {
-    char cwd[1024];  // Buffer to hold the current working directory
-
-    if (getcwd(cwd, sizeof(cwd)) != NULL) {
+    char cwd[1024];
+    char *result;
+    
+    result = getcwd(cwd, sizeof(cwd)); 
+    if (result != NULL)
         printf("%s\n", cwd);
-    } else {
+    else
         perror("pwd");
-    }
 }
 

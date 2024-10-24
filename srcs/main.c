@@ -20,8 +20,8 @@ int	main(void)
 
 	prompt = "\033[1;38;5;201mMinishell🐚 \033[0m";
 	//for testing
-	shell.cmd = "cd";
-	shell.str = "srcs";
+	shell.cmd = "pwd";
+	shell.str = "";
 	while (1)
 	{
 		input = readline(prompt);
