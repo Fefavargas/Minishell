@@ -12,15 +12,20 @@
 
 #include "minishell.h"
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	char	*input;
 	t_mini shell;
 	const char *prompt;
 
+	//for now
+	(void)argc;
+	(void)argv;
+	
 	prompt = "\033[1;38;5;201mMinishell🐚 \033[0m";
+	
 	//for testing
-	shell.cmd = "pwd";
+	shell.cmd = "export";
 	shell.str = "";
 	while (1)
 	{
@@ -37,7 +42,7 @@ int	main(void)
 			break ;
 		}
 		//t_mini shell = parsing(input);
-		execution(shell, NULL);
+		execution(shell, envp);
 		free(input);
 	}
 	return (0);

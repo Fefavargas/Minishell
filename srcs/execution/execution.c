@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/24 23:32:02 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/24 23:57:22 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,17 @@ void	execution(t_mini shell, char **env)
         ft_cd(shell.str);
     else if (ft_strcmp(shell.cmd, "pwd") == 0)
         ft_pwd();
-    /*else if (ft_strcmp(shell.cmd, "export) == 0)
-        ft_export(str);
+    else if (ft_strcmp(shell.cmd, "export") == 0)
+        ft_export(env);
+        
+    /*
     else if (ft_strcmp(shell.cmd, "unset") == 0)
         ft_unset(str);
     else if ft_strcmp(shell.cmd, "env") == 0)
         ft_env();
     else if ft_strcmp(shell.cmd, "exit) == 0)
         ft_exit();*/
-    //else
+    //else 
         //ft_execute(cmd, env);
     else 
         printf("Command not found\n"); 

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtins.c                                         :+:      :+:    :+:   */
+/*   builtsins1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:22:22 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/24 23:49:41 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/25 00:11:48 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,29 @@ void ft_pwd(void)
         printf("%s\n", cwd);
     else
         perror("pwd");
+}
+
+void ft_export(char **envp)
+{
+    int i;
+    i = 0;
+    while (envp[i] != NULL)
+    {
+        printf("%s\n", envp[i]);
+        i++;
+    }
+}
+
+
+void ft_unset(char *var)
+{
+    if (var != NULL)
+    {
+        if (unsetenv(var) != 0) {
+            perror("unset");
+        }
+    } else {
+        fprintf(stderr, "unset: variable name required\n");
+    }
 }
 
