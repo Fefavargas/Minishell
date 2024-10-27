@@ -17,12 +17,18 @@ int	main(int argc, char **argv, char **envp)
 	char	*input;
 	t_mini shell;
 	const char *prompt;
+	char **local_envp;
+
+	local_envp = copy_envp(envp);
+	if (!local_envp) {
+        perror("Failed to copy envp");
+        return 1;
+    }
+	prompt = "\033[1;38;5;201mMinishell🐚 \033[0m";
 
 	//for now
 	(void)argc;
 	(void)argv;
-	
-	prompt = "\033[1;38;5;201mMinishell🐚 \033[0m";
 	
 	//for testing
 	shell.cmd = "export";
@@ -42,11 +48,12 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		}
 		//t_mini shell = parsing(input);
-		execution(shell, envp);
+		execution(shell, local_envp);
 		shell.cmd = "unset";
-		shell.str = "HOME";
-		execution(shell, envp);
+		shell.str = "PAGER";
+		execution(shell, local_envp);
 		free(input);
+		free(local_envp);
 	}
 	return (0);
 }

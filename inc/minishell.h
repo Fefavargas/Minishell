@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/25 00:27:38 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/25 19:57:42 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ char	*ft_strjoin(char const *s1, char const *s2);
 
 //ft_split.c
 char	**ft_split(char const *s, char c);
+
+//copy_envp.c
+char	**copy_envp(char **envp);
 
 //built_ins_1.c
 void ft_echo(char *cmd, char *str);
