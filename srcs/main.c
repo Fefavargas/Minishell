@@ -31,7 +31,7 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 
 	//for testing
-	shell.cmd = "export";
+	shell.cmd = "env";
 	shell.str = "";
 	while (1)
 	{

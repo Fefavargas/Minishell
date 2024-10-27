@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   built_ins_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+        */
+/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:22:22 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/27 16:53:34 by jbyrne           ###   ########.fr       */
+/*   Updated: 2024/10/27 18:22:12 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_pwd(void)
 		perror("pwd");
 }
 
-void	ft_export(char **envp)
+void	ft_env(char **envp)
 {
 	int	i;
 
