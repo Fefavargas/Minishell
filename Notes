@@ -2,6 +2,8 @@
 Janae
 
 - If we have echo + multiple args, how do we put this into the struct - should there be an array of strings?
-- still need to figure out echo -n 
+- still need to figure out echo -n
+
+ - we should parse a local envp for environment variables - in the main i make a local envp and pass it to the shell. or we can add it to the structure?
+
  
- - we should parse a local envp for environment variables - in the main i make a local envp and pass it to the shell

@@ -29,19 +29,19 @@ int	main(int argc, char **argv, char **envp)
 	//for now
 	(void)argc;
 	(void)argv;
-	
+
 	//for testing
 	shell.cmd = "export";
 	shell.str = "";
 	while (1)
 	{
 		input = readline(prompt);
-		if (input == NULL) 
+		if (input == NULL)
 		{
 			printf("\n");
 			break ;
 		}
-		if (ft_strcmp(input, "exit") == 0) 
+		if (ft_strcmp(input, "exit") == 0)
 		{
 			printf("Exiting...\n");
 			free(input);
@@ -49,11 +49,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 		//t_mini shell = parsing(input);
 		execution(shell, local_envp);
-		shell.cmd = "unset";
-		shell.str = "PAGER";
-		execution(shell, local_envp);
 		free(input);
-		free(local_envp);
 	}
 	return (0);
 }
