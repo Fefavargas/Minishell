@@ -14,16 +14,17 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*input;
-	t_mini shell;
-	const char *prompt;
-	char **local_envp;
+	char		*input;
+	t_mini		shell;
+	const char	*prompt;
+	char		**local_envp;
 
 	local_envp = copy_envp(envp);
-	if (!local_envp) {
-        perror("Failed to copy envp");
-        return 1;
-    }
+	if (!local_envp)
+	{
+		perror("Failed to copy envp");
+		return (1);
+	}
 	prompt = "\033[1;38;5;201mMinishell🐚 \033[0m";
 
 	//for now

@@ -6,11 +6,11 @@
 /*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/27 22:09:15 by fefa             ###   ########.fr       */
+/*   Updated: 2024/10/27 22:12:48 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../inc/minishell.h"
 
 void	add_historical(char *line, t_mini *shell)
 {

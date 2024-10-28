@@ -6,7 +6,7 @@
 /*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/27 21:58:42 by fefa             ###   ########.fr       */
+/*   Updated: 2024/10/27 22:12:25 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_mini	parsing(char *input);
 //util.c
 bool	check_quotation(char *str);
 int		check_dollar_sign(char *str);
-char	*get_envp(char *str, char **envp)
+char	*get_envp(char *str, char **envp);
 
 //copy_envp.c
 char	**copy_array(char **array, bool plusone);
