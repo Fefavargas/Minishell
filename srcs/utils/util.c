@@ -3,77 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:59:59 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/23 16:35:41 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/27 22:06:56 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../inc/minishell.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+//libft is authorized! \0/
+
+bool	check_quotation(char *str)
 {
-	unsigned int	i;
+	int		i;
+	char	c;
 
-	i = 0;
-	while (s1[i] && s2[i] && s1[i] == s2[i])
-		i++;
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == 34 || str[i] == 39)
+		{
+			c = str[i];
+			while (str[++i])
+			{
+				if (str[i] == c)
+					break ;
+			}
+		}
+		if (!str[i])
+		{
+			//error message?
+			return (0);
+		}
+	}
+	return (1);
 }
 
-//sorry i need this too...
-int	ft_strncmp(const char *str1, const char *str2, size_t n)
+int	check_dollar_sign(char *str)
 {
 	int	i;
 
-	i = 0;
-	while (n > 0 && str1[i] && (str1[i] == str2[i]))
+	i = -1;
+	while (str[++i])
 	{
-		i++;
-		n--;
+		if (str[i] == '$')
+			return (i);
 	}
-	if (n == 0)
-	{
-		return (0);
-	}
-	else
-		return ((unsigned char) str1[i] - (unsigned char) str2[i]);
+	return (-1);
 }
 
-size_t	ft_strlen(const char *s)
+char	*get_envp(char *str, char **envp)
 {
-	size_t	i;
+	int		j;
+	char	*path;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	char		*joined;
-	size_t		len1;
-	size_t		len2;
-	size_t		i;
-	size_t		j;
-
-	len1 = ft_strlen(s1);
-	len2 = ft_strlen(s2);
-	i = 0;
 	j = 0;
-	joined = (char *)malloc(len1 + len2 + 1);
-	if (!joined)
-		return (NULL);
-	while (i < len1)
-	{
-		*(joined + i++) = *s1++;
-	}
-	while (j < len2)
-	{
-		*(joined + i + j++) = *s2++;
-	}
-	*(joined + i + j) = '\0';
-	return (joined);
+	while (str[j] && str[j] != ' ')
+		j++;
+	i = 0;
+	while (envp[i] && ft_strncmp(envp[i], str, j))
+		i++;
+	if (envp[i])
+		return (envp[i] + j + 1);
+	return (0);
 }
