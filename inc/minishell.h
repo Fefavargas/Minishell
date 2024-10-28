@@ -3,23 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/27 18:22:27 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/27 22:12:25 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#include<stddef.h>
-#include<stdio.h>
-#include<string.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+# include <stddef.h>
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include "../libft/libft.h"
+
+/*typedef struct s_command
+{
+	char				**cmd;
+	struct s_command	*next;
+	struct s_command	*prev;
+}	t_command;*/
 
 typedef struct s_mini
 {
@@ -28,7 +36,8 @@ typedef struct s_mini
 	char			*file;
 	int				redirection;
 	struct s_mini	*next;
-}t_mini;
+	char			**hist;
+}	t_mini;
 
 //execution.c
 void	execution(t_mini shell, char **env);
@@ -41,28 +50,24 @@ char	*build_command_path(char *cmd_name, char **env);
 void	ft_execute(char *cmd, char *env[]);
 
 //parsing.c
+bool	check_quotation(char *str);
 t_mini	parsing(char *input);
 
 //util.c
-int		ft_strcmp(const char *s1, const char *s2);
-int		ft_strncmp(const char *str1, const char *str2, size_t n);
-size_t	ft_strlen(const char *s);
-char	*ft_strjoin(char const *s1, char const *s2);
-
-//ft_split.c
-char	**ft_split(char const *s, char c);
+bool	check_quotation(char *str);
+int		check_dollar_sign(char *str);
+char	*get_envp(char *str, char **envp);
 
 //copy_envp.c
-char	**copy_envp(char **envp);
+char	**copy_array(char **array, bool plusone);
 
 //built_ins_1.c
-void ft_echo(char *cmd, char *str);
-void ft_cd(char *path);
-void ft_pwd(void);
-void ft_env(char **envp);
+void	ft_echo(char *cmd, char *str);
+void	ft_cd(char *path);
+void	ft_pwd(void);
+void	ft_env(char **envp);
 
 //built_ins_2.c
-void ft_unset(char *var, char **envp);
-
+void	ft_unset(char *var, char **envp);
 
 #endif
