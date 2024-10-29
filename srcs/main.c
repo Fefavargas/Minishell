@@ -19,7 +19,7 @@ int	main(int argc, char **argv, char **envp)
 	const char	*prompt;
 	char		**local_envp;
 
-	local_envp = copy_envp(envp);
+	local_envp = copy_array(envp, false);
 	if (!local_envp)
 	{
 		perror("Failed to copy envp");
@@ -42,7 +42,7 @@ int	main(int argc, char **argv, char **envp)
 			printf("\n");
 			break ;
 		}
-		if (ft_strcmp(input, "exit") == 0)
+		if (ft_strncmp(input, "exit", 4) == 0)
 		{
 			printf("Exiting...\n");
 			free(input);

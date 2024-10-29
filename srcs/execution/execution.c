@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/27 18:23:47 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/29 00:49:04 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 void	execution(t_mini shell, char **env)
 {
 	(void)env;
-	if (ft_strcmp(shell.cmd, "echo") == 0)
+	if (ft_strncmp(shell.cmd, "echo", 4) == 0)
 	{
 		ft_echo(shell.cmd, shell.str);
 	}
-	else if (ft_strcmp(shell.cmd, "cd") == 0)
+	else if (ft_strncmp(shell.cmd, "cd", 2) == 0)
 		ft_cd(shell.str);
-	else if (ft_strcmp(shell.cmd, "pwd") == 0)
+	else if (ft_strncmp(shell.cmd, "pwd", 3) == 0)
 		ft_pwd();
-	else if (ft_strcmp(shell.cmd, "env") == 0)
+	else if (ft_strncmp(shell.cmd, "env", 3) == 0)
 		ft_env(env);
-	else if (ft_strcmp(shell.cmd, "unset") == 0)
+	else if (ft_strncmp(shell.cmd, "unset", 5) == 0)
 		ft_unset(shell.str, env);
 	/*
-	else if ft_strcmp(shell.cmd, "export") == 0)
+	else if ft_strncmp(shell.cmd, "export", 6) == 0)
 		ft_export);
-	else if ft_strcmp(shell.cmd, "exit) == 0)
+	else if ft_strncmp(shell.cmd, "exit" 4) == 0)
 		ft_exit();*/
 	// else
 	// ft_execute(cmd, env);

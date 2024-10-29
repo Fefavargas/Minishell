@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/27 22:12:48 by fefa             ###   ########.fr       */
+/*   Updated: 2024/10/29 01:04:21 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	add_historical(char *line, t_mini *shell)
 	while (array && array[i])
 		i++;
 	array[i] = ft_strdup(line);
-	array[i + 1] = 0;
-	shell->
-	return (array);
+	array[i + 1] = NULL;
+	shell->hist = array;
+	return(array);
 }
 
 bool	check_inside_simple_quotes(char *str, int pos)
@@ -104,7 +104,8 @@ char	**get_variable(char *str, char **envp)
 	return (var);
 }
 
-t_mini	parsing(char *input)
+/*t_mini	parsing(char *input)
 {
 
 }
+*/
