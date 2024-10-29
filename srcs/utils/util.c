@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:59:59 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/29 00:51:38 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/29 11:30:59 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
-
-//libft is authorized! \0/
+#include "minishell.h"
 
 bool	check_quotation(char *str)
 {
@@ -56,7 +54,7 @@ int	check_dollar_sign(char *str)
 char	*get_envp(char *str, char **envp)
 {
 	int		j;
-	int i;
+	int 	i;
 
 	j = 0;
 	while (str[j] && str[j] != ' ')

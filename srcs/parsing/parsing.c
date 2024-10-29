@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/29 01:04:21 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/29 11:27:13 by fefa             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 
 void	add_historical(char *line, t_mini *shell)
 {
@@ -23,7 +23,6 @@ void	add_historical(char *line, t_mini *shell)
 	array[i] = ft_strdup(line);
 	array[i + 1] = NULL;
 	shell->hist = array;
-	return(array);
 }
 
 bool	check_inside_simple_quotes(char *str, int pos)
@@ -43,7 +42,7 @@ bool	check_inside_simple_quotes(char *str, int pos)
 	return (0);
 }
 
-int	**count_dollar_sign(char *str, t_mini *shell)
+int	count_dollar_sign(char *str)
 {
 	int		i;
 	int		count;
