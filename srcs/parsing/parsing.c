@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fefa <fefa@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:38 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/29 11:27:13 by fefa             ###   ########.fr       */
+/*   Updated: 2024/10/29 16:03:34 by jbyrne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "minishell.h"
 
 void	add_historical(char *line, t_mini *shell)
 {
 	static char	**array;
 	int			i;
+	i = 0;
 
 	array = copy_array(array, 1);
 	while (array && array[i])

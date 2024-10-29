@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+         #
+#    By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:15:11 by fvargas           #+#    #+#              #
-#    Updated: 2024/10/29 01:12:27 by janaebyrne       ###   ########.fr        #
+#    Updated: 2024/10/29 16:12:27 by jbyrne           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc 
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror -pthread -lreadline -Iinc -I$(LIBFT_DIR)
 
@@ -43,7 +43,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(SRC) $(LIBFT)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME) $(LIBFT)
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) -L$(LIBFT_DIR) -lft -lreadline
 
 debug: $(SRC) $(LIBFT)
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(SRC) -o $(NAME) $(LIBFT)
@@ -52,6 +52,10 @@ clean:
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_DIR) clean
 
-re: clean all
+fclean: clean
+	rm -f $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+
+re: fclean all
 
 .PHONY: all clean re
