@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+         #
+#    By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:15:11 by fvargas           #+#    #+#              #
-#    Updated: 2024/10/29 16:12:27 by jbyrne           ###   ########.fr        #
+#    Updated: 2024/10/29 23:36:54 by janaebyrne       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(NAME): $(SRC) $(LIBFT)
-	$(CC) $(CFLAGS) $(SRC) -o $(NAME) -L$(LIBFT_DIR) -lft -lreadline
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME) -L$(LIBFT_DIR) -lft
 
 debug: $(SRC) $(LIBFT)
 	$(CC) $(CFLAGS) $(DEBUG_FLAGS) $(SRC) -o $(NAME) $(LIBFT)

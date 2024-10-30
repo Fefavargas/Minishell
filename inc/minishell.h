@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+        */
+/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/29 16:05:38 by jbyrne           ###   ########.fr       */
+/*   Updated: 2024/10/29 22:57:40 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ void	ft_env(char **envp);
 
 //built_ins_2.c
 void	ft_unset(char *var, char **envp);
+int	find_path_index(char *desired_var, char **envp);
+void ft_export(char *var, char *var_value, char ***envp);
 
 #endif

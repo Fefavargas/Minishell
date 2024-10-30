@@ -6,14 +6,12 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 19:56:35 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/28 18:19:40 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/29 23:59:39 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//why do you want to copy envp? why do we can use what we already have envp?
-//maybe I need exctly the same function with one more space for the historical commands
 char	**copy_array(char **array, bool plusone)
 {
 	int		i;

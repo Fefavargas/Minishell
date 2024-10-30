@@ -32,8 +32,9 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 
 	//for testing
-	shell.cmd = "env";
-	shell.str = "";
+	shell.cmd = "export";
+	shell.str = "MYVAR";
+	shell.file = "myvalue";
 	while (1)
 	{
 		input = readline(prompt);
@@ -50,6 +51,11 @@ int	main(int argc, char **argv, char **envp)
 		}
 		//t_mini shell = parsing(input);
 		execution(shell, local_envp);
+		printf("one");
+		shell.str= "export";
+		shell.file = NULL;
+		execution(shell, local_envp);
+		printf("two");
 		free(input);
 	}
 	return (0);
