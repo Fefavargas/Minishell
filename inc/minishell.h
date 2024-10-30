@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/29 22:57:40 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/30 19:30:42 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,14 @@ char	*get_envp(char *str, char **envp);
 //copy_envp.c
 char	**copy_array(char **array, bool plusone);
 
-//built_ins_1.c
+//built_ins
 void	ft_echo(char *cmd, char *str);
 void	ft_cd(char *path);
 void	ft_pwd(void);
 void	ft_env(char **envp);
-
-//built_ins_2.c
 void	ft_unset(char *var, char **envp);
 int	find_path_index(char *desired_var, char **envp);
 void ft_export(char *var, char *var_value, char ***envp);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/30 00:16:33 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/10/30 18:49:00 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	execution(t_mini shell, char **env)
 {
 	(void)env;
+
+	printf("cmd: %s\n", shell.cmd);
 	if (ft_strncmp(shell.cmd, "echo", 4) == 0)
 	{
 		ft_echo(shell.cmd, shell.str);
@@ -35,4 +37,5 @@ void	execution(t_mini shell, char **env)
 	// ft_execute(cmd, env);
 	else
 		printf("Command not found\n");
+	return;
 }

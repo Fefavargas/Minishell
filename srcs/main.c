@@ -50,12 +50,12 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		}
 		//t_mini shell = parsing(input);
-		execution(shell, local_envp);
 		printf("one");
-		shell.str= "export";
+		execution(shell, local_envp);
+		shell.cmd= "export";
+		shell.str = NULL;
 		shell.file = NULL;
 		execution(shell, local_envp);
-		printf("two");
 		free(input);
 	}
 	return (0);

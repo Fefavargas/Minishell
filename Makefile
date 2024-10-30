@@ -6,7 +6,7 @@
 #    By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:15:11 by fvargas           #+#    #+#              #
-#    Updated: 2024/10/29 23:36:54 by janaebyrne       ###   ########.fr        #
+#    Updated: 2024/10/30 19:32:07 by janaebyrne       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,9 +29,13 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRC = $(SRC_DIR)/main.c \
       $(UTILS_DIR)/util.c \
       $(EXECUTION_DIR)/execution.c \
-      $(EXECUTION_DIR)/built_ins_1.c \
-      $(EXECUTION_DIR)/built_ins_2.c \
-      $(EXECUTION_DIR)/ft_execute.c \
+      $(EXECUTION_DIR)/built_ins/ft_echo.c \
+      $(EXECUTION_DIR)/built_ins/ft_cd.c \
+      $(EXECUTION_DIR)/built_ins/ft_execute.c \
+      $(EXECUTION_DIR)/built_ins/ft_env.c \
+      $(EXECUTION_DIR)/built_ins/ft_export.c \
+      $(EXECUTION_DIR)/built_ins/ft_unset.c \
+      $(EXECUTION_DIR)/built_ins/ft_pwd.c \
       $(UTILS_DIR)/copy_envp.c \
       $(PARSING_DIR)/parsing.c \
 
