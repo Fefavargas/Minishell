@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:28:22 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/30 19:28:44 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/05 17:08:21 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void ft_export(char *var, char *var_value, char ***envp)
 	printf("start");
 	if (var == NULL || var_value == NULL)
 	{
-		while (envp[i] != NULL)
+		while (envp[i] != NULL) 
 		{
 			printf("%s\n", *envp[i]);
 			i++;

@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/30 19:30:42 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/05 17:48:46 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ typedef struct s_mini
 	char			*str;
 	char			*file;
 	int				redirection;
+	char			**local_envp;
 	struct s_mini	*next;
 	char			**hist;
 }	t_mini;
 
 //execution.c
-void	execution(t_mini shell, char **env);
+void	execution(t_mini shell);
 
 //command.c
 void	free_array(char **array);

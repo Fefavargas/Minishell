@@ -6,16 +6,14 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/10/30 18:49:00 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/05 17:49:37 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	execution(t_mini shell, char **env)
+void	execution(t_mini shell)
 {
-	(void)env;
-
 	printf("cmd: %s\n", shell.cmd);
 	if (ft_strncmp(shell.cmd, "echo", 4) == 0)
 	{
@@ -26,11 +24,11 @@ void	execution(t_mini shell, char **env)
 	else if (ft_strncmp(shell.cmd, "pwd", 3) == 0)
 		ft_pwd();
 	else if (ft_strncmp(shell.cmd, "env", 3) == 0)
-		ft_env(env);
+		ft_env(shell.local_envp);
 	else if (ft_strncmp(shell.cmd, "unset", 5) == 0)
-		ft_unset(shell.str, env);
+		ft_unset(shell.str, shell.local_envp);
 	else if (ft_strncmp(shell.cmd, "export", 6) == 0)
-		ft_export(shell.str, shell.file, &env);
+		ft_export(shell.str, shell.file, &shell.local_envp);
 	/*else if ft_strncmp(shell.cmd, "exit" 4) == 0)
 		ft_exit();*/
 	// else

@@ -17,10 +17,9 @@ int	main(int argc, char **argv, char **envp)
 	char		*input;
 	t_mini		shell;
 	const char	*prompt;
-	char		**local_envp;
 
-	local_envp = copy_array(envp, false);
-	if (!local_envp)
+	shell.local_envp = copy_array(envp, false);
+	if (!shell.local_envp)
 	{
 		perror("Failed to copy envp");
 		return (1);
@@ -50,12 +49,12 @@ int	main(int argc, char **argv, char **envp)
 			break ;
 		}
 		//t_mini shell = parsing(input);
-		printf("one");
-		execution(shell, local_envp);
+		//debugging prints 
+		execution(shell);
 		shell.cmd= "export";
 		shell.str = NULL;
 		shell.file = NULL;
-		execution(shell, local_envp);
+		execution(shell);
 		free(input);
 	}
 	return (0);
