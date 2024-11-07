@@ -6,59 +6,63 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 19:28:22 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/11/05 17:08:21 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/07 17:30:04 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-void ft_export(char *var, char *var_value, char ***envp)
-{
-	int		i;
-	int		index;
-	char 	*var_plus_equal;
-	char	*new_var;
-	char**	new_envp;
-	i = 0;
 
-	printf("start");
+#include "minishell.h"
+
+void set_env_var(const char *name, const char *value, char **local_envp) 
+{
+    int i;
+	i = 0;
+	char	*temp;
+	char	*new_entry;	
+	int env_var_count;
+	env_var_count = 0;
+	
+	while (local_envp[env_var_count] != NULL)
+		env_var_count++;
+	while (i < env_var_count)
+	{
+        if (ft_strncmp(name, local_envp[i], ft_strlen(name)) == 0 && local_envp[i][ft_strlen(name)] == '=')
+		{
+			free(local_envp[i]);
+			temp = ft_strjoin(name, "=");
+			local_envp[i] = ft_strjoin(temp, value);
+			free(temp); 
+			return;
+        }
+        i++;
+    }
+	//write part if env doesnt exist
+	local_envp[env_var_count] = ft_strjoin(name, "=");
+	new_entry = ft_strjoin(local_envp[env_var_count], value);
+	free(local_envp[env_var_count]);
+	local_envp[env_var_count] = new_entry;
+	local_envp[env_var_count + 1] = NULL;
+	i = 0;
+	while (local_envp[i] != NULL) 
+	{
+		printf("%s\n", local_envp[i]);
+		i++;
+	}
+}
+
+
+void ft_export(char *var, char *var_value, char** local_envp)
+{
 	if (var == NULL || var_value == NULL)
 	{
-		while (envp[i] != NULL) 
+		int i = 0;
+		while (local_envp[i] != NULL) 
 		{
-			printf("%s\n", *envp[i]);
+			printf("%s\n", local_envp[i]);
 			i++;
 		}
 		return;
 	}
-	var_plus_equal = ft_strjoin(var, "=");
-	new_var = ft_strjoin(var_plus_equal, var_value);
-	free(var_plus_equal);
-	printf("new_var: %s\n", new_var);
-	index = find_path_index(var, *envp);
-	printf("index: %d\n", index);
-	if (index != -1)
-	{
-		free((*envp)[index]);
-        (*envp)[index] = new_var; 
-        return;
-	}
-	new_envp = copy_array(*envp, true);
-	printf("%s\n", (*envp)[i]);
-	if (!new_envp)
-	{
-		perror("Failed to copy envp");
-		return;
-	}
-	
-    i = 0;
-    while ((new_envp)[i] != NULL) 
-	{
-        i++;
-		printf("%s\n", new_envp[i]);	
-    }
-    new_envp[i] = new_var;
-	printf("%s\n", new_envp[i]);
-    new_envp[i + 1] = NULL; 
-	free(*envp);
-	*envp = new_envp;
+	set_env_var(var, var_value, local_envp);
 }
+	

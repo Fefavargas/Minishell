@@ -51,10 +51,6 @@ int	main(int argc, char **argv, char **envp)
 		//t_mini shell = parsing(input);
 		//debugging prints 
 		execution(shell);
-		shell.cmd= "export";
-		shell.str = NULL;
-		shell.file = NULL;
-		execution(shell);
 		free(input);
 	}
 	return (0);

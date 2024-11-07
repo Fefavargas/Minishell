@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/05 17:48:46 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/07 17:14:31 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ void	ft_pwd(void);
 void	ft_env(char **envp);
 void	ft_unset(char *var, char **envp);
 int	find_path_index(char *desired_var, char **envp);
-void ft_export(char *var, char *var_value, char ***envp);
+void ft_export(char *var, char *var_value, char** local_envp);
+void set_env_var(const char *name, const char *value, char **local_envp);
 
 
 #endif

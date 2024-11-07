@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/05 17:49:37 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/07 17:17:52 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	execution(t_mini shell)
 {
-	printf("cmd: %s\n", shell.cmd);
 	if (ft_strncmp(shell.cmd, "echo", 4) == 0)
 	{
 		ft_echo(shell.cmd, shell.str);
@@ -28,7 +27,7 @@ void	execution(t_mini shell)
 	else if (ft_strncmp(shell.cmd, "unset", 5) == 0)
 		ft_unset(shell.str, shell.local_envp);
 	else if (ft_strncmp(shell.cmd, "export", 6) == 0)
-		ft_export(shell.str, shell.file, &shell.local_envp);
+		ft_export(shell.str, shell.file, shell.local_envp);
 	/*else if ft_strncmp(shell.cmd, "exit" 4) == 0)
 		ft_exit();*/
 	// else
