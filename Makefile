@@ -6,7 +6,7 @@
 #    By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:15:11 by fvargas           #+#    #+#              #
-#    Updated: 2024/10/30 19:32:07 by janaebyrne       ###   ########.fr        #
+#    Updated: 2024/11/08 23:09:49 by janaebyrne       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,10 @@ SRC = $(SRC_DIR)/main.c \
       $(EXECUTION_DIR)/built_ins/ft_export.c \
       $(EXECUTION_DIR)/built_ins/ft_unset.c \
       $(EXECUTION_DIR)/built_ins/ft_pwd.c \
+      $(EXECUTION_DIR)/redirection.c \
       $(UTILS_DIR)/copy_envp.c \
       $(PARSING_DIR)/parsing.c \
+      
 
 INC = inc/minishell.h
 

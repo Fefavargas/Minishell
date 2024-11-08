@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/07 17:14:31 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/08 23:12:36 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@
 # include <readline/history.h>
 # include <stdbool.h>
 # include "libft.h"
+# include <fcntl.h>
 
+
+#define REDIRECT_INPUT  1  // Represents '<' 
+#define REDIRECT_OUTPUT 2  // Represents '>'
+#define REDIRECT_APPEND 3  // Represents '>>' 
+#define REDIRECT_HEREDOC 4 // Represents '<<'
 /*typedef struct s_command
 {
 	char				**cmd;
@@ -42,7 +48,7 @@ typedef struct s_mini
 }	t_mini;
 
 //execution.c
-void	execution(t_mini shell);
+void	execute_commands(t_mini shell);
 
 //command.c
 void	free_array(char **array);
@@ -73,5 +79,9 @@ int	find_path_index(char *desired_var, char **envp);
 void ft_export(char *var, char *var_value, char** local_envp);
 void set_env_var(const char *name, const char *value, char **local_envp);
 
+//redirection.c
+int open_file(const char *file, int flags, mode_t mode);
+void redirect_fd(int oldfd, int newfd);
+void setup_redirection(t_mini *node);
 
 #endif

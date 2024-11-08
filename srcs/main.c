@@ -50,7 +50,7 @@ int	main(int argc, char **argv, char **envp)
 		}
 		//t_mini shell = parsing(input);
 		//debugging prints 
-		execution(shell);
+		execute_commands(shell);
 		free(input);
 	}
 	return (0);

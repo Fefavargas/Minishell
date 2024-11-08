@@ -6,13 +6,13 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/07 17:17:52 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/08 20:58:38 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	execution(t_mini shell)
+void	execute_commands(t_mini shell)
 {
 	if (ft_strncmp(shell.cmd, "echo", 4) == 0)
 	{
@@ -30,9 +30,8 @@ void	execution(t_mini shell)
 		ft_export(shell.str, shell.file, shell.local_envp);
 	/*else if ft_strncmp(shell.cmd, "exit" 4) == 0)
 		ft_exit();*/
-	// else
-	// ft_execute(cmd, env);
 	else
-		printf("Command not found\n");
+		ft_execute(shell.cmd, shell.local_envp);
 	return;
 }
+
