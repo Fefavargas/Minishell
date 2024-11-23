@@ -1,6 +1,10 @@
 
 Janae
 
+NEW: when parsing redirection, for << (heredoc) we need to store the delimiter. we could store this in the "file" in the struct ?
+
+
+
 - If we have echo + multiple args, how do we put this into the struct - should there be an array of strings?
 - still need to figure out echo -n
 

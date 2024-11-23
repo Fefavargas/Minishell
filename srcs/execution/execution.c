@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/16 22:40:05 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/23 23:00:44 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ int is_builtin(const char *cmd)
 }
 void	execute_commands(t_mini shell)
 {
+	int saved_stdout;
+	int saved_stdin;
+	
+	saved_stdout = dup(STDOUT_FILENO);
+	saved_stdin = dup(STDIN_FILENO);
+	
+	if (shell.redirection != 0)
+	{
+		setup_redirection(shell);
+	}
 	if (is_builtin(shell.cmd))
 	{
 		if (ft_strncmp(shell.cmd, "echo", 4) == 0)
