@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 18:08:48 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/23 23:00:44 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/24 00:10:37 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	execute_commands(t_mini shell)
 	
 	if (shell.redirection != 0)
 	{
-		setup_redirection(shell);
+		setup_redirection(&shell);
 	}
 	if (is_builtin(shell.cmd))
 	{
@@ -59,5 +59,8 @@ void	execute_commands(t_mini shell)
 	}
 	else
 		ft_execute(shell.cmd, shell.local_envp);
+	dup2(saved_stdin, STDIN_FILENO);
+    dup2(saved_stdout, STDOUT_FILENO);
+    close(saved_stdin);
+    close(saved_stdout);
 }
-

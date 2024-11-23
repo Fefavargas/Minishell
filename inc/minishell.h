@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/16 22:48:42 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/23 23:51:16 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ int open_file(const char *file, int flags, mode_t mode);
 void redirect_fd(int oldfd, int newfd);
 void setup_redirection(t_mini *node);
 int handle_heredoc(const char *delimiter);
+
 
 #endif

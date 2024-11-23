@@ -1,13 +1,30 @@
 
 Janae
 
-NEW: when parsing redirection, for << (heredoc) we need to store the delimiter. we could store this in the "file" in the struct ?
+
+23rd nov:
+
+when parsing redirection, for << (heredoc) we need to store the delimiter. we could store this in the "file" in the struct ?
+
+Also, heredocs always need to be done first in case of multiple redirections
+e.g. 
+cat > output.txt << EOF
+Hello, World!
+EOF
+In this case, you would need to do the parsing so that the first node contains redirection: <<, file: EOF (delimiter), str "Hello, World!\n"
+
+
+another thought - what should be max line length for heredoc
+
+
+
+
+
 
 
 
 - If we have echo + multiple args, how do we put this into the struct - should there be an array of strings?
 - still need to figure out echo -n
 
- - we should parse a local envp for environment variables - in the main i make a local envp and pass it to the shell. or we can add it to the structure?
 
  

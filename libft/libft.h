@@ -57,6 +57,6 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
 //get_next_line
-int		get_next_line(int fd);
+char    *get_next_line(int fd);
 
 #endif
