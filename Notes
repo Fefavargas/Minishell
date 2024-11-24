@@ -1,8 +1,6 @@
 
-Janae
 
-
-23rd nov:
+janae - 23rd nov:
 
 when parsing redirection, for << (heredoc) we need to store the delimiter. we could store this in the "file" in the struct ?
 
@@ -14,7 +12,7 @@ EOF
 In this case, you would need to do the parsing so that the first node contains redirection: <<, file: EOF (delimiter), str "Hello, World!\n"
 
 
-another thought - what should be max line length for heredoc
+note to self (janae): how to avoid break's / returns exiting the whole programme, it should just "break" within minishell...
 
 
 
