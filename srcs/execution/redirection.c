@@ -6,11 +6,22 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 21:31:55 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/11/24 00:09:53 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/24 01:11:10 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"  
+
+static char *strip_newline(char *str)
+{
+    size_t len = strlen(str);
+    if (len > 0 && str[len - 1] == '\n')
+    {
+        str[len - 1] = '\0';  // Remove the newline
+    }
+    return str;
+}
+
 
 int open_file(const char *file, int flags, mode_t mode)
 {
@@ -67,22 +78,18 @@ void setup_redirection(t_mini *node)
 }
 
 
-int handle_heredoc(const char *delimiter)
+int handle_heredoc(char *delimiter)
 {
     char *line = NULL;
     int fd;
     ssize_t bytes_written;
     
-    fd = open_file("src/execution/heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-    if (fd < 0)
-    {
-        perror("error opening heredoc file");
-        exit(EXIT_FAILURE);
-    }
+    strip_newline(delimiter);
+    fd = open_file("heredoc", O_WRONLY | O_CREAT | O_TRUNC, 0644);
     while (1)
     {
-        printf("> ");
         
+        write(STDOUT_FILENO, "heredoc> ", 9);
         line = get_next_line(STDIN_FILENO);
         if (line == NULL)
         {
@@ -90,6 +97,7 @@ int handle_heredoc(const char *delimiter)
             close(fd);
             exit(EXIT_FAILURE);
         }
+        strip_newline(line);
         if (strcmp(line, delimiter) == 0)
         {
             free(line);
@@ -107,7 +115,7 @@ int handle_heredoc(const char *delimiter)
         free(line);
     }
     close(fd);
-    fd = open_file("src/execution/heredoc", O_RDONLY, 0);
+    fd = open_file("heredoc", O_RDONLY, 0);
     if (fd < 0)
     {
         perror("error opening heredoc file");

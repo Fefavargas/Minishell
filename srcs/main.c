@@ -31,9 +31,9 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 
 	//for testing
-	shell.cmd = "export";
-	shell.str = "MYVAR";
-	shell.file = "myvalue";
+   	shell.cmd = "cat"; ;  
+    shell.file = "END";  // The delimiter for heredoc
+    shell.redirection = REDIRECT_HEREDOC;
 	while (1)
 	{
 		input = readline(prompt);
