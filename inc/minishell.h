@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/24 01:08:50 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/24 02:55:51 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <stdbool.h>
 # include "libft.h"
 # include <fcntl.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
 
 #define REDIRECT_INPUT  1  // Represents '<' 
@@ -46,6 +48,7 @@ typedef struct s_mini
 	char			**local_envp;
 	struct s_mini	*next;
 	char			**hist;
+	
 }	t_mini;
 
 //execution.c
@@ -79,7 +82,6 @@ void	ft_unset(char *var, char **envp);
 int	find_path_index(char *desired_var, char **envp);
 void ft_export(char *var, char *var_value, char** local_envp);
 void set_env_var(const char *name, const char *value, char **local_envp);
-int is_builtin(const char *cmd);
 
 //redirection.c
 int open_file(const char *file, int flags, mode_t mode);
@@ -87,5 +89,14 @@ void redirect_fd(int oldfd, int newfd);
 void setup_redirection(t_mini *node);
 int handle_heredoc(char *delimiter);
 
+//pipeline.c
+void execute_pipeline(t_mini *node);
+void handle_parent_process(int *pipefd);
+void handle_child_process(t_mini *node, int *pipefd, int *prev_pipefd);
+
+//pipeline_utils.c
+int count_commands(t_mini *commands);
+void setup_pipe(int *pipefds);
+void close_pipe(int *pipefds);
 
 #endif
