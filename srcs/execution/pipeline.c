@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 22:44:58 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/11/24 02:58:31 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/24 18:34:51 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,68 +15,62 @@
 void execute_pipeline(t_mini *node)
 {
     int pipefd[2];
-    int prev_pipefd[2] = {-1, -1};  // Keep track of previous pipe's file descriptors
+    int prev_pipefd[2] = {-1, -1};  //initalise prev as invalid pipe
     pid_t pid;
-    
     
     while (node != NULL)
     {
         if (node->next != NULL)
             setup_pipe(pipefd);
-
+        else
+        {
+            pipefd[0] = -1;
+            pipefd[1] = -1; 
+        }
         pid = fork();
         if (pid == -1)
         {
             perror("fork");
             exit(EXIT_FAILURE);
         }
-        if (pid == 0)  // Child process
-            handle_child_process(node, pipefd, prev_pipefd);
-        else  // Parent process
-        {
-            if (prev_pipefd[0] != -1)
-            {
-                close(prev_pipefd[0]);  // Close previous pipe read end 
-            }
-            if (prev_pipefd[1] != -1)
-            {
-                close(prev_pipefd[1]);  // Close previous pipe write end
-            }
-            handle_parent_process(pipefd);  // Close the current pipe in the parent process
-            prev_pipefd[0] = pipefd[0];  // Update previous pipe read end
-            prev_pipefd[1] = pipefd[1];  // Update previous pipe write end
-        }
+        if (pid == 0)
+            handle_child_process(node, pipefd, prev_pipefd);         
+        else
+            handle_parent_process(pipefd, prev_pipefd);
         node = node->next;  // Move to the next command in the pipeline
     }
-    while (wait(NULL) > 0);
+    wait_for_children();
 }
 
-void handle_parent_process(int *pipefd)
+void handle_parent_process(int *pipefd, int *prev_pipefd)
 {
-    int result;
+    if (prev_pipefd[0] != -1)
+        close(prev_pipefd[0]);
+    if (prev_pipefd[1] != -1)
+        close(prev_pipefd[1]);
 
-    result = close(pipefd[0]);
-    if (result == -1)
+    // Update previous pipe descriptors for the next iteration
+    if (pipefd[0] != -1 && pipefd[1] != -1)
     {
-        perror("close pipe read");
-        exit(EXIT_FAILURE);
+        prev_pipefd[0] = pipefd[0];
+        prev_pipefd[1] = pipefd[1];
     }
-
-    result = close(pipefd[1]);
-    if (result == -1)
+    else
     {
-        perror("close pipe write");
-        exit(EXIT_FAILURE);
+        prev_pipefd[0] = -1;
+        prev_pipefd[1] = -1;
     }
 }
+
 
 
 void handle_child_process(t_mini *node, int *pipefd, int *prev_pipefd)
 {
     int result;
 
-    if (prev_pipefd != NULL)
+    if (prev_pipefd[0] != -1)
     {
+        close(prev_pipefd[1]); //unusued write end of prev pipe
         result = dup2(prev_pipefd[0], STDIN_FILENO);
         if (result == -1)
         {
@@ -86,7 +80,7 @@ void handle_child_process(t_mini *node, int *pipefd, int *prev_pipefd)
         close(prev_pipefd[0]);
     }
 
-    if (pipefd != NULL)
+    if (pipefd[1] != -1)
     {
         result = dup2(pipefd[1], STDOUT_FILENO);
         if (result == -1)
@@ -99,4 +93,21 @@ void handle_child_process(t_mini *node, int *pipefd, int *prev_pipefd)
 
     execute_commands(*node);  // Execute the current command
     exit(EXIT_SUCCESS);  // Exit child process
+}
+
+
+void wait_for_children()
+{
+    pid_t pid;
+
+    while ((pid = wait(NULL)) > 0)
+    {
+        // Waiting for all child processes
+    }
+
+    if (pid == -1 && errno != ECHILD)
+    {
+        perror("wait");
+        exit(EXIT_FAILURE);
+    }
 }

@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	prompt = "\033[1;38;5;201mMinishell🐚 \033[0m";
 
-	//for now
+	//for now while parser incomplete
 	(void)argc;
 	(void)argv;
 

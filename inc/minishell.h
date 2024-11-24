@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/24 02:55:51 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/24 18:45:31 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <errno.h>
 
 
 #define REDIRECT_INPUT  1  // Represents '<' 
@@ -91,12 +92,17 @@ int handle_heredoc(char *delimiter);
 
 //pipeline.c
 void execute_pipeline(t_mini *node);
-void handle_parent_process(int *pipefd);
+void handle_parent_process(int *pipefd, int *prev_pipefd);
 void handle_child_process(t_mini *node, int *pipefd, int *prev_pipefd);
+void wait_for_children(void);
 
 //pipeline_utils.c
 int count_commands(t_mini *commands);
 void setup_pipe(int *pipefds);
 void close_pipe(int *pipefds);
+
+
+//delete later
+void setup_test_pipeline(t_mini **pipeline);
 
 #endif
