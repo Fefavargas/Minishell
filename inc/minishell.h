@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/24 18:45:31 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/27 12:44:17 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@
 #define REDIRECT_APPEND 3  // Represents '>>' 
 #define REDIRECT_HEREDOC 4 // Represents '<<'
 
+#define	SIGINT		2	/* Interactive attention signal.  */
+#define	SIGQUIT		3	/* Quit.  */
+
 /*typedef struct s_command
 {
 	char				**cmd;
@@ -49,7 +52,6 @@ typedef struct s_mini
 	char			**local_envp;
 	struct s_mini	*next;
 	char			**hist;
-	
 }	t_mini;
 
 //execution.c

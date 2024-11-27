@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_envp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: fvargas <fvargas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 19:56:35 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/11/05 18:43:41 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/27 15:42:30 by fvargas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,15 @@ char	**copy_array(char **array, bool plusone)
 	}
 	local_array[i] = NULL;
 	return (local_array);
+}
+
+int	is_empty(char *str)
+{
+	while (*str)
+	{
+		if (*str == ' ' || (*str >= 9 && *str <= 13))
+			str++;
+		return (0);
+	}
+	return (1);
 }
