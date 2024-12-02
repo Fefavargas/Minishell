@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   built_ins_1.c                                      :+:      :+:    :+:   */
+/*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 17:22:22 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/30 19:24:19 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/28 19:25:12 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_echo(char *cmd, char *str)
+int	ft_echo(char *cmd, char *str)
 {
 	int	i;
 	int	new_line;
@@ -31,4 +31,5 @@ void	ft_echo(char *cmd, char *str)
 	{
 		printf("\n"); // Add newline if not suppressed
 	}
+	return (EXIT_SUCCESS);
 }

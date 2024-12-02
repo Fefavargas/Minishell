@@ -6,7 +6,7 @@
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 00:03:03 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/30 19:28:32 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/28 19:39:26 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	find_path_index(char *desired_var, char **envp)
 	return (-1);
 }
 
-void	ft_unset(char *var, char **envp)
+int	ft_unset(char *var, char **envp)
 {
 	int	index;
 	int	i;
@@ -37,13 +37,13 @@ void	ft_unset(char *var, char **envp)
 	if (var == NULL)
 	{
 		write(STDERR_FILENO, "unset: variable name required\n", 30);
-		return;
+		return (EXIT_FAILURE);
 	}
 	index = find_path_index(var, envp);
 	if (index == -1)
 	{
 		write(STDERR_FILENO, "unset: no such variable\n", 24);
-		return;
+		return (EXIT_FAILURE);
 	}
 	free(envp[index]);
 	i = index;
@@ -53,4 +53,6 @@ void	ft_unset(char *var, char **envp)
 		i++;
 	}
 	envp[i] = NULL;
+	return (EXIT_SUCCESS);
 }
+

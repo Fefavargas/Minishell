@@ -1,3 +1,6 @@
+Janae-  28th Nov:
+i need the parser to provide in the struct both input_fd and output_fd (First and last)
+
 
 
 janae - 23rd nov:
@@ -12,13 +15,18 @@ EOF
 In this case, you would need to do the parsing so that the first node contains redirection: <<, file: EOF (delimiter), str "Hello, World!\n"
 
 
+
+
+
+
+
+
+
+
+
+
+
 note to self (janae): how to avoid break's / returns exiting the whole programme, it should just "break" within minishell...
-
-
-
-
-
-
 
 
 - If we have echo + multiple args, how do we put this into the struct - should there be an array of strings?

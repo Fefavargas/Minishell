@@ -6,7 +6,7 @@
 #    By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 18:15:11 by fvargas           #+#    #+#              #
-#    Updated: 2024/11/24 02:30:04 by janaebyrne       ###   ########.fr        #
+#    Updated: 2024/11/29 15:48:33 by janaebyrne       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC = $(SRC_DIR)/main.c \
       $(EXECUTION_DIR)/redirection.c \
       $(EXECUTION_DIR)/pipeline.c \
       $(EXECUTION_DIR)/pipeline_utils.c \
+      $(EXECUTION_DIR)/main_executor.c \
       $(UTILS_DIR)/copy_envp.c \
       $(PARSING_DIR)/parsing.c \
       

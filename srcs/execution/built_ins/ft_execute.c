@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   command.c                                          :+:      :+:    :+:   */
+/*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 16:16:31 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/10/24 01:00:37 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/11/29 21:10:35 by janaebyrne       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*build_command_path(char *cmd_name, char **env)
 }
 
 
-void	ft_execute(char *cmd, char *env[])
+int	ft_execute(char *cmd, char *env[])
 {
 	char	**cmd_args;
 	char	*cmd_path;
@@ -116,22 +116,27 @@ void	ft_execute(char *cmd, char *env[])
 	if (!cmd_args)
 	{
 		perror("Error: malloc failed");
-		exit(EXIT_FAILURE);
+		return(EXIT_FAILURE);
 	}
 	cmd_path = build_command_path(cmd_args[0], env);
 	if (!cmd_path)
 	{
 		printf("Error: command not found: %s\n", cmd_args[0]);
 		free_array(cmd_args);
-		exit(EXIT_FAILURE);
+		return(EXIT_FAILURE);
 	}
 	if (execve(cmd_path, cmd_args, env) == -1)
-	
 	{
 		perror("Error: execve failed");
 		free(cmd_path);
 		free_array(cmd_args);
-		exit(EXIT_FAILURE);
+		return(EXIT_FAILURE);
+	}
+	else
+	{
+		free(cmd_path);
+		free_array(cmd_args);
+		return(EXIT_SUCCESS);//check later
 	}
 }
 

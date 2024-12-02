@@ -12,14 +12,48 @@
 
 #include "minishell.h"
 
+static t_mini *create_node(const char *cmd)
+{
+	t_mini *node = (t_mini *)malloc(sizeof(t_mini));
+    if (!node) {
+        perror("Failed to allocate memory");
+        exit(EXIT_FAILURE);
+    }
+    node->cmd = strdup(cmd); // Copy the command string
+    node->next = NULL;
+    return node;
+}
+
+
+t_mini *initialize_list() {
+    // Create the first node
+    t_mini *head = create_node("cat");
+    
+    // Create the second node and link it to the first
+    head->next = create_node("wc -l");
+    
+    // Create the third node and link it to the second
+    head->next->next = create_node("ls -l");
+
+    return head;
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	char		*input;
-	t_mini		shell;
+	t_mini		*shell;
 	const char	*prompt;
+	shell = initialize_list();
+	t_mini *current; 
+	current = shell;
 
-	shell.local_envp = copy_array(envp, false);
-	if (!shell.local_envp)
+	while(current != NULL) {
+		printf("%s\n", current->cmd);
+		current = current->next;
+	}
+	current = shell;
+	current->local_envp = copy_array(envp, false);
+	if (!current->local_envp)
 	{
 		perror("Failed to copy envp");
 		return (1);
@@ -31,9 +65,6 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 
 	//for testing
-   	shell.cmd = "cat"; ;  
-    shell.file = "END";  // The delimiter for heredoc
-    shell.redirection = REDIRECT_HEREDOC;
 	while (1)
 	{
 		input = readline(prompt);
@@ -48,9 +79,7 @@ int	main(int argc, char **argv, char **envp)
 			free(input);
 			break ;
 		}
-		//t_mini shell = parsing(input);
-		//debugging prints 
-		execute_commands(shell);
+		executor(shell);
 		free(input);
 	}
 	return (0);
