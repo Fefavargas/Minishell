@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 22:44:58 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/11/30 00:40:48 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/12/02 16:00:24 by jbyrne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	execute_builtin(int *fd_pipes, int pos, t_mini *shell)
 	if (dup2(fd_pipes[pos], STDIN_FILENO) == -1 || \
 		dup2(fd_pipes[pos + 3], STDOUT_FILENO) == -1)
 		return (EXIT_FAILURE);
-	close_unused_fd(fd_pipes, pos, pos + 1); 
+	close_unused_fd(fd_pipes, pos, KEEP_BOTH, pos + 1);
 	exit_code = call_builtin(shell->cmd, shell);
 	close_pipe(&fd_pipes[pos]);
 	close_pipe(&fd_pipes[pos + 3]);
@@ -61,7 +61,7 @@ int	execute_pipeline(int *fd_pipes, pid_t *pid, t_mini *shell)
 		{
 			execute_nonbuiltin(fd_pipes, i * 2, &pid[i], shell);
 		}
-		
+
 		current = current->next;
 		i++;
 	}
@@ -101,7 +101,7 @@ int	execute_nonbuiltin(int *fd_pipes, int pos, int *pid, t_mini *shell)
 			perror("dup2");
 			return (EXIT_FAILURE);
 		}
-		close_unused_fd(fd_pipes, pos, 2 * count_commands(shell));
+		close_unused_fd(fd_pipes, pos, KEEP_BOTH, 2 * count_commands(shell));
 		exit (ft_execute(shell->cmd, shell->local_envp));
 	}
 	close_pipe(&fd_pipes[pos]);

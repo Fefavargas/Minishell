@@ -12,6 +12,7 @@
 
 #include "minishell.h"
 
+//janae testing
 static t_mini *create_node(const char *cmd)
 {
 	t_mini *node = (t_mini *)malloc(sizeof(t_mini));
@@ -24,14 +25,15 @@ static t_mini *create_node(const char *cmd)
     return node;
 }
 
+// janae testing
 
 t_mini *initialize_list() {
     // Create the first node
     t_mini *head = create_node("cat");
-    
+
     // Create the second node and link it to the first
     head->next = create_node("wc -l");
-    
+
     // Create the third node and link it to the second
     head->next->next = create_node("ls -l");
 
@@ -44,9 +46,10 @@ int	main(int argc, char **argv, char **envp)
 	t_mini		*shell;
 	const char	*prompt;
 	shell = initialize_list();
-	t_mini *current; 
+	t_mini *current;
 	current = shell;
 
+	//janae testing
 	while(current != NULL) {
 		printf("%s\n", current->cmd);
 		current = current->next;

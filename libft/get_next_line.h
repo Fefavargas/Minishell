@@ -6,7 +6,7 @@
 /*   By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:08:20 by jbyrne            #+#    #+#             */
-/*   Updated: 2024/03/25 14:44:07 by jbyrne           ###   ########.fr       */
+/*   Updated: 2024/12/02 16:06:00 by jbyrne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,11 @@
 # include <unistd.h>
 
 char	*get_next_line(int fd);
-char	*ft_strjoin(char *s1, char *s2);
-int		ft_strlen(const char *s);
 char	*ft_strchr(const char *s, int c);
 char	*read_from_file(int fd, char *leftover);
 char	*extract_line(char *leftover);
 char	*clean_file(char *leftover);
-void	*ft_calloc(unsigned int count, unsigned int size);
+
+
 
 #endif

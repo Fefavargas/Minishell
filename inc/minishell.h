@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 17:12:43 by fvargas           #+#    #+#             */
-/*   Updated: 2024/11/30 00:44:25 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/12/02 15:58:29 by jbyrne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,16 @@
 # include <errno.h>
 
 
-#define REDIRECT_INPUT  1  // Represents '<' 
+/*program parameters*/
+# define KEEP_NONE -1
+# define KEEP_INPUT 0
+# define KEEP_OUTPUT 1
+# define KEEP_BOTH 2
+
+
+#define REDIRECT_INPUT  1  // Represents '<'
 #define REDIRECT_OUTPUT 2  // Represents '>'
-#define REDIRECT_APPEND 3  // Represents '>>' 
+#define REDIRECT_APPEND 3  // Represents '>>'
 #define REDIRECT_HEREDOC 4 // Represents '<<'
 
 #define	SIGINT		2	/* Interactive attention signal.  */
@@ -55,7 +62,7 @@ typedef struct s_mini
 	int				input_fd;
 	int				output_fd;
 	int				exit_status;
-	
+
 }	t_mini;
 
 //execution.c
@@ -109,7 +116,7 @@ int count_commands(t_mini *commands);
 void setup_pipe(int *pipefds);
 int close_pipe(int *pipefds);
 int	*build_pipes(int fd_out, int fd_in, int cmd_count);
-int close_unused_fd(int *fd_pipes, int pos, int len);
+int close_unused_fd(int *fd_pipes, int pos, int keep, int len);
 int	*build_pipes(int fd_out, int fd_in, int cmd_count);
 
 //main_executor.c

@@ -6,11 +6,12 @@
 /*   By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:51:55 by jbyrne            #+#    #+#             */
-/*   Updated: 2024/03/25 14:45:58 by jbyrne           ###   ########.fr       */
+/*   Updated: 2024/12/02 16:03:12 by jbyrne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "libft.h"
 
 char	*join_and_free(char *leftover, char *buffer)
 {

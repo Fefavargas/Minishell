@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipeline_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: janaebyrne <janaebyrne@student.42.fr>      +#+  +:+       +#+        */
+/*   By: jbyrne <jbyrne@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 02:29:28 by janaebyrne        #+#    #+#             */
-/*   Updated: 2024/11/30 00:45:18 by janaebyrne       ###   ########.fr       */
+/*   Updated: 2024/12/02 16:01:46 by jbyrne           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,30 @@ int count_commands(t_mini *commands)
     return count;  // Return the total count of commands in the list
 }
 
-int close_unused_fd(int *fd_pipes, int pos, int len)
+int close_unused_fd(int *fd_pipes, int pos, int keep, int len)
 {
     int	i;
 	int	*ptr;
 	int	fd_in;
 	int	fd_out;
 
-	if (!fd_pipes || pos < 0 || len == 0)
+	if (!fd_pipes || pos < 0 || len == 0 || keep > KEEP_BOTH || keep < KEEP_NONE)
 		return (EXIT_FAILURE);
 	i = 1;
 	ptr = fd_pipes;
 	fd_in = -1;
 	fd_out = -1;
-	if (keep == FDX_RW || keep == FDX_OR)
+	if (keep == KEEP_BOTH || keep == KEEP_INPUT)
 		fd_in = pos;
-	if (keep == FDX_RW || keep == FDX_OW)
+	if (keep == KEEP_BOTH || keep == KEEP_OUTPUT)
 		fd_out = pos + 3;
 	while (++i < len)
 	{
 		if (i != fd_in && i != fd_out \
-			&& close_fd (&ptr[i]) == EXIT_FAILURE)
+			&& close_pipe (&ptr[i]) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
-}
 }
 
 
@@ -81,7 +80,7 @@ int	*build_pipes(int fd_out, int fd_in, int cmd_count)
 	int	*fd_pipes;
 	int	i;
     i = 0;
-    
+
 	if (!cmd_count)
 		return (0);
 	fd_pipes = (int *) ft_calloc((2 * cmd_count) + 2, sizeof(int));
